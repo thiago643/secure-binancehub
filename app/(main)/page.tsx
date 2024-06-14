@@ -62,7 +62,7 @@ export default function Home() {
     } else {
       setError("");
       console.log("seccuss");
-      route.push(url);
+      route.push(url || "");
     }
   };
 
