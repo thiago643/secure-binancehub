@@ -16,18 +16,16 @@ export default function Home() {
   const [btn, setBtn] = useState(false);
   const [Error, setError] = useState("");
   const [ranNumber, setRanNumber] = useState<number[]>();
-  const [url, setUrl] = useState<string | null>("");
   const route = useRouter();
 
   const { data } = useQuery({
     queryKey: ["Data"],
     queryFn: async () => {
-      const data = await fetch("https://jsonv2.onrender.com/api", {
+      const res = await fetch("https://jsonv2.onrender.com/api", {
         method: "GET",
       });
-      const response = await data.json();
-      setUrl(response.url);
-      return response;
+      const result = await res.json();
+      return result;
     },
   });
   useEffect(() => {
@@ -62,7 +60,7 @@ export default function Home() {
     } else {
       setError("");
       console.log("seccuss");
-      route.push(url || "");
+      route.push(data.url || "");
     }
   };
 
